@@ -33,6 +33,8 @@ def product_list_fetcher(product_list):
         else:
             print(":( could not ftech product, try again")
 
+# product_list_fetcher(["/Dabur-Hajmola-120-Tablet-Anardana/dp/B01CJUZPSU/ref=zg_bs_1374621031_1?_encoding=UTF8&psc=1&refRID=M90AT64K59JM96SYSPPD"])
+
 # fetch page results
 page_links = []
 i = 1
