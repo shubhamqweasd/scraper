@@ -4,19 +4,8 @@ name:
 price:
     css: '#priceblock_ourprice'
     type: Text
-general_details:
-    css: '#productDetails_techSpec_section_1 tr'
-    multiple: true
-    type: Text
-    children:
-        key:
-            css: th
-            type: Text
-        value:
-            css: td
-            type: Text
-additional_details:
-    css: '#productDetails_detailBullets_sections1 tr'
+details__private__DO_NOT_MODIFY:
+    css: 'table tr'
     multiple: true
     type: Text
     children:

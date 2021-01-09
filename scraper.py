@@ -1,5 +1,5 @@
 import multiprocessing
-from helpers import scrape_product, scrape_search
+from helpers import scrape_product, scrape_search, data_builder
 import threading
 import sys
 import csv
@@ -11,6 +11,7 @@ PAGE_URL = "https://www.amazon.in/gp/bestsellers/hpc/1374621031/ref=zg_bs_nav_hp
 LOCK = threading.Lock()
 WRITE_CSV_HEADER = True
 MAX_PRODUCTS = 100
+DETAIL_KEYS = ["Product Dimensions", "Net Quantity", "Best Sellers Rank"]
 ###########################################################################################
 
 def append_to_csv(data):
@@ -26,6 +27,7 @@ def product_list_fetcher(product_list):
     for product_link in product_list:
         data = scrape_product("https://www.amazon.in" + product_link)
         if data and data['name']:
+            data = data_builder(data, DETAIL_KEYS)
             LOCK.acquire()
             append_to_csv(data)
             print("Fetch Success for - " + product_link)
@@ -33,7 +35,10 @@ def product_list_fetcher(product_list):
         else:
             print(":( could not ftech product, try again")
 
+### DEBUG ###
 # product_list_fetcher(["/Dabur-Hajmola-120-Tablet-Anardana/dp/B01CJUZPSU/ref=zg_bs_1374621031_1?_encoding=UTF8&psc=1&refRID=M90AT64K59JM96SYSPPD"])
+# sys.exit()
+#############
 
 # fetch page results
 page_links = []

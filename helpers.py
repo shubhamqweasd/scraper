@@ -29,3 +29,13 @@ def scrape_product(url):
         return None
     # Pass the HTML of the page and create
     return e_product.extract(r.text)
+
+
+def data_builder(data, DETAIL_KEYS):
+    DETAIL_KEYS = set(DETAIL_KEYS)
+    if data and data['details__private__DO_NOT_MODIFY']:
+        for detail in data['details__private__DO_NOT_MODIFY']:
+            if detail['key'] in DETAIL_KEYS:
+                data[detail['key']] = detail['value']
+        del data['details__private__DO_NOT_MODIFY']
+    return data
