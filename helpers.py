@@ -36,7 +36,9 @@ def data_builder(data, DETAIL_KEYS):
     if data and data['details__private__DO_NOT_MODIFY']:
         for detail in data['details__private__DO_NOT_MODIFY']:
             if detail['key'] in DETAIL_KEYS:
-                data[detail['key']] = str(detail['value'])
+                val = str(detail['value'])
+                val = val.replace(',', '')
+                data[detail['key']] = val
         for key in DETAIL_KEYS:
             if key not in data:
                 data[key] = ""
